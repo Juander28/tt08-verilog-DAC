@@ -29,8 +29,8 @@ pinout:
   ui[3]: "in_comp"
   ui[4]: "clk"
   ui[5]: "rst"
-  ui[6]: ""
-  ui[7]: ""
+  ui[6]: "stop"
+  ui[7]: "temp"
 
   # Outputs
   uo[0]: "VR[0]"
