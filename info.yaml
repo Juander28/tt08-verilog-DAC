@@ -19,7 +19,7 @@ project:
   source_files:
     - "tt_um_CONTROL.v"
     - "shiftRegP.v"
-    - "d_ff.c"
+    - "d_ff.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
