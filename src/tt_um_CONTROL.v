@@ -59,7 +59,7 @@ wire stp_vref, stp_data, stp_conver, stp_comp;
 			 assign uio_out[0]  = data[4];
 			 assign uio_out[1]  = data[5];
 			 assign uio_out[2]  = data[6];
-			 assign uio_out[3]  = data[7];
+			 assign uio_out[3]  = data[7];/*
 			 assign uio_out[4]  = conver[0];
 			 assign uio_out[5]  = conver[1];
 			 assign uio_out[6]  = conver[2];
@@ -69,7 +69,8 @@ wire stp_vref, stp_data, stp_conver, stp_comp;
 			 assign uio_oe[0]  = conver[4];
 			 assign uio_oe[1]  = conver[5];
 			 assign uio_oe[2]  = conver[6];
-			 assign uio_oe[3]  = conver[7];
+			 assign uio_oe[3]  = conver[7];*/
+	
 			//assign uio_oe=8'hff;
 			//assign uio_out={VR[2],7'h00};
 		 
@@ -87,13 +88,13 @@ wire stp_vref, stp_data, stp_conver, stp_comp;
 						 .d(ui_in[1]),
 				 .buffer_s({data,stp_data}));
 						 
-			 shiftRegP #(.N(9)) CONVER(
+			/* shiftRegP #(.N(9)) CONVER(
 						 .clk(clk),
 						 .rst(rst_n),
 						 .en(!stp_conver),
 						 .d(ui_in[2]),
 				 .buffer_s({conver,stp_conver}));
-						 
+			*/			 
 			/* shiftRegP #(.N(7)) COMP(
 						 .clk(clk),
 						 .rst(rst_n),
