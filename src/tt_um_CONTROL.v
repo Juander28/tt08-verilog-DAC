@@ -36,8 +36,8 @@ module tt_um_CONTROL(
 
 
 
-
-					 wire in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp;
+/*
+			
 					 wire [2:0] VR, VM, VRC;
 					 
 			 wire stp_vref, stp_data, stp_conver, stp_comp;
@@ -46,58 +46,60 @@ module tt_um_CONTROL(
 			 wire [7:0]conver;
 			 wire [5:0]comp;
 			 
-			 assign {in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp}=ui_in;
+		
 			 
-			 assign uo_out={VR[1:0], VM, VRC};
-			 assign uio_oe=8'hff;
-			 assign uio_out={VR[2],7'h00};
-			 
+			
+			assign uio_oe=8'hff;
+			assign uio_out={VR[2],7'h00};
+*/			 
 			 shiftRegP #(.N(5)) VREF(
-						 .clk(clock),
-						 .rst(rst),
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_vref),
-						 .d(in_vref),
-						 .buffer_s({vref,stp_vref}));
+				 		 .d(ui_in[0]),
+				 		 .buffer_s({uo_out[0:3],stp_vref}));
 						 
 			 shiftRegP #(.N(9)) DATA(
-						 .clk(clock),
-						 .rst(rst),
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_data),
-						 .d(in_data),
-						 .buffer_s({data,stp_data}));
+						 .d(ui_in[1]),
+				 .buffer_s({uo_out[4:7],uio_out[0:3],stp_data}));
 						 
 			 shiftRegP #(.N(9)) CONVER(
-						 .clk(clock),
-						 .rst(rst),
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_conver),
-						 .d(in_conver),
-						 .buffer_s({conver,stp_conver}));
+						 .d(ui_in[2]),
+				 .buffer_s({uio_out[4:7], ,stp_conver}));
 						 
-			 shiftRegP #(.N(7)) COMP(
-						 .clk(clock),
-						 .rst(rst),
+			/* shiftRegP #(.N(7)) COMP(
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_comp),
-						 .d(in_comp),
-						 .buffer_s({comp,stp_comp}));	 
+						 .d(ui_in[3]),
+						 .buffer_s({comp,stp_comp}));	
 						 
 			d_ff low [2:0](
-								.clk(clock),
-								.reset(rst),
-								.en(stop),
-								.d({temp,temp, temp}),
+								.clk(clk),
+								.reset(rst_n),
+								.en(ena),
+								.d(ui_in[4:6]),
 								.q(VR));
 			d_ff med [2:0](
-								.clk(clock),
-								.reset(rst),
-								.en(stop),
-								.d({temp,temp, temp}),
+								.clk(clk),
+								.reset(rst_n),
+								.en(ena),
+								.d({ui_in[7],uio_in[0:1]),
 								.q(VM));
 			d_ff high [2:0](
-								.clk(clock),
-								.reset(rst),
-								.en(stop),
-								.d({temp,temp, temp}),
-								.q(VRC));
+								.clk(clk),
+								.reset(rst_n),
+								.en(ena),
+								.d(uio_in[2:4]),
+						 .buffer_s({comp,stp_comp}));	
+						 .buffer_s({comp,stp_comp}));	
+								.q(VRC)); */
 
 endmodule
 
