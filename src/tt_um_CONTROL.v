@@ -37,8 +37,8 @@ module tt_um_CONTROL(
 
 
 
-					 wire in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp;
-					 wire [2:0] VR, VM, VRC;
+			wire in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp;
+			wire [2:0] VR, VM, VRC;
 					 
 			 wire stp_vref, stp_data, stp_conver, stp_comp;
 			 wire [3:0]vref;
@@ -48,57 +48,57 @@ module tt_um_CONTROL(
 			 
 			 assign {in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp}=ui_in;
 			 
-			 assign uo_out={VR[1:0], VM, VRC};
+			 assign uo_out={data};
 			 assign uio_oe=8'hff;
-			 assign uio_out={VR[2],7'h00};
-			 
+			 assign uio_out={conver};
+			 /*
 			 shiftRegP #(.N(5)) VREF(
-						 .clk(clock),
-						 .rst(rst),
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_vref),
-						 .d(in_vref),
+						 .d(ui_in[0]),
 						 .buffer_s({vref,stp_vref}));
-						 
+			*/			 
 			 shiftRegP #(.N(9)) DATA(
-						 .clk(clock),
-						 .rst(rst),
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_data),
-						 .d(in_data),
+						 .d(ui_in[1]),
 						 .buffer_s({data,stp_data}));
 						 
 			 shiftRegP #(.N(9)) CONVER(
-						 .clk(clock),
-						 .rst(rst),
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_conver),
-						 .d(in_conver),
+						 .d(ui_in[2]),
 						 .buffer_s({conver,stp_conver}));
-						 
+			/*			 
 			 shiftRegP #(.N(7)) COMP(
-						 .clk(clock),
-						 .rst(rst),
+						 .clk(clk),
+						 .rst(rst_n),
 						 .en(!stp_comp),
 						 .d(in_comp),
 						 .buffer_s({comp,stp_comp}));	 
 						 
 			d_ff low [2:0](
-								.clk(clock),
-								.reset(rst),
+								.clk(clk),
+								.reset(rst_n),
 								.en(stop),
 								.d({temp,temp, temp}),
 								.q(VR));
 			d_ff med [2:0](
-								.clk(clock),
-								.reset(rst),
+								.clk(clk),
+								.reset(rst_n),
 								.en(stop),
 								.d({temp,temp, temp}),
 								.q(VM));
 			d_ff high [2:0](
-								.clk(clock),
-								.reset(rst),
+								.clk(clk),
+								.reset(rst_n),
 								.en(stop),
 								.d({temp,temp, temp}),
 								.q(VRC));
-
+*/
 endmodule
 
 
