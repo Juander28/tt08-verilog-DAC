@@ -30,7 +30,7 @@ pinout:
   ui[3]: "in_comp"
   ui[4]: "clk"
   ui[5]: "rst"
-  ui[6]: "stop"
+  ui[6]: "ena"
   ui[7]: "temp"
 
   # Outputs
