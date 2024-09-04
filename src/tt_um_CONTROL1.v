@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module tt_um_CONTROL(
+module tt_um_CONTROL1(
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -51,14 +51,14 @@ module tt_um_CONTROL(
 			 assign uo_out={data};
 			 assign uio_oe=8'hff;
 			 assign uio_out={conver};
-			 /*
+			 
 			 shiftRegP #(.N(5)) VREF(
 						 .clk(clk),
 						 .rst(rst_n),
 						 .en(!stp_vref),
 						 .d(ui_in[0]),
 						 .buffer_s({vref,stp_vref}));
-			*/			 
+		/*			 
 			 shiftRegP #(.N(9)) DATA(
 						 .clk(clk),
 						 .rst(rst_n),
@@ -72,32 +72,31 @@ module tt_um_CONTROL(
 						 .en(!stp_conver),
 						 .d(ui_in[2]),
 						 .buffer_s({conver,stp_conver}));
-			/*			 
 			 shiftRegP #(.N(7)) COMP(
 						 .clk(clk),
 						 .rst(rst_n),
 						 .en(!stp_comp),
 						 .d(in_comp),
 						 .buffer_s({comp,stp_comp}));	 
-						 
+			*/			 
 			d_ff low [2:0](
 								.clk(clk),
 								.reset(rst_n),
 								.en(stop),
-								.d({temp,temp, temp}),
+								.d({ui_in[3],ui_in[2], ui_in[1]}),
 								.q(VR));
 			d_ff med [2:0](
 								.clk(clk),
 								.reset(rst_n),
 								.en(stop),
-								.d({temp,temp, temp}),
+								.d({ui_in[6],ui_in[5], ui_in[4]}),
 								.q(VM));
 			d_ff high [2:0](
 								.clk(clk),
 								.reset(rst_n),
 								.en(stop),
-								.d({temp,temp, temp}),
+								.d({uio_in[1],uio_in[0], ui_in[7]}),
 								.q(VRC));
-*/
+
 endmodule
 
