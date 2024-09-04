@@ -31,13 +31,6 @@ module tt_um_CONTROL(
     input  wire       rst_n     // reset_n - low to reset
 );
 
-
-
-
-
-
-
-			wire in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp;
 			wire [2:0] VR, VM, VRC;
 					 
 			 wire stp_vref, stp_data, stp_conver, stp_comp;
@@ -46,8 +39,7 @@ module tt_um_CONTROL(
 			 wire [7:0]conver;
 			 wire [5:0]comp;
 			 
-			 assign {in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp}=ui_in;
-			 
+					 
 			 assign uo_out={data};
 			 assign uio_oe=8'hff;
 			 assign uio_out={conver};
