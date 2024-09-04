@@ -44,7 +44,7 @@ pinout:
   uo[7]: "VRC[1]"
 
   # Bidirectional pins
-  uio[0]: "VRC[2]"
+  uio[0]: ""
   uio[1]: ""
   uio[2]: ""
   uio[3]: ""
