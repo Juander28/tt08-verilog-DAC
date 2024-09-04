@@ -48,9 +48,9 @@ module tt_um_CONTROL1(
 			 
 			 assign {in_vref, in_data, in_conver, in_comp, clock,  rst, stop, temp}=ui_in;
 			 
-			 assign uo_out={data};
+			assign uo_out={VM[0],VR[2], VR[1], VR[0], vref};
 			 assign uio_oe=8'hff;
-			 assign uio_out={conver};
+	assign uio_out={3'b000,VRC[0], VRC[0], VRC[0], VM[0], VM[0]};
 			 
 			 shiftRegP #(.N(5)) VREF(
 						 .clk(clk),
@@ -82,19 +82,19 @@ module tt_um_CONTROL1(
 			d_ff low [2:0](
 								.clk(clk),
 								.reset(rst_n),
-								.en(stop),
+								.en(ena),
 								.d({ui_in[3],ui_in[2], ui_in[1]}),
 								.q(VR));
 			d_ff med [2:0](
 								.clk(clk),
 								.reset(rst_n),
-								.en(stop),
+								.en(ena),
 								.d({ui_in[6],ui_in[5], ui_in[4]}),
 								.q(VM));
 			d_ff high [2:0](
 								.clk(clk),
 								.reset(rst_n),
-								.en(stop),
+								.en(ena),
 								.d({uio_in[1],uio_in[0], ui_in[7]}),
 								.q(VRC));
 
