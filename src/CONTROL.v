@@ -21,7 +21,7 @@
 
 
 module CONTROL(
-					 input wire in_vref, in_data, in_conver, in_comp, clk,  rst, stop, temp,
+					 input wire in_vref, in_data, in_conver, in_comp, clk,  rst, ena, temp,
 					 output [2:0] VR, VM, VRC);
 					 
 			 wire stp_vref, stp_data, stp_conver, stp_comp;
@@ -60,19 +60,19 @@ module CONTROL(
 			d_ff low [2:0](
 								.clk(clk),
 								.reset(rst),
-								.en(stop),
+								.en(ena),
 								.d({temp,temp, temp}),
 								.q(VR));
 			d_ff med [2:0](
 								.clk(clk),
 								.reset(rst),
-								.en(stop),
+								.en(ena),
 								.d({temp,temp, temp}),
 								.q(VM));
 			d_ff high [2:0](
 								.clk(clk),
 								.reset(rst),
-								.en(stop),
+								.en(ena),
 								.d({temp,temp, temp}),
 								.q(VRC));
 
