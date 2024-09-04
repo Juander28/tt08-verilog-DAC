@@ -51,6 +51,7 @@ wire stp_vref, stp_data, stp_conver, stp_comp;
 			 assign uo_out[1]  = vref[1];
 			 assign uo_out[2]  = vref[2];
 			 assign uo_out[3]  = vref[3];
+	/*
 			 assign uo_out[4]  = data[0];
 			 assign uo_out[5]  = data[1];
 			 assign uo_out[6]  = data[2];
@@ -60,7 +61,8 @@ wire stp_vref, stp_data, stp_conver, stp_comp;
 			 assign uio_out[1]  = data[5];
 			 assign uio_out[2]  = data[6];
 			 assign uio_out[3]  = data[7];
-			 assign uio_oe      = 8'hFF;
+    */
+			 assign uio_oe      = 8'hff;
 	
 	/*
 			 assign uio_out[4]  = conver[0];
